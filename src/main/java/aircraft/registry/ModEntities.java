@@ -17,5 +17,5 @@ public class ModEntities {
             ENTITIES.register("cube", () ->
                     EntityType.Builder.of(CubeEntity::new, MobCategory.MISC)
                             .sized(1.0f,1.0f)
-                            .build("cube"));
+                            .build("aircraft:cube"));
 }
