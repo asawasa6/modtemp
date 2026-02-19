@@ -15,7 +15,9 @@ public class ModEntities {
 
     public static final DeferredHolder<EntityType<?>, EntityType<CubeEntity>> CUBE =
             ENTITIES.register("cube", () ->
-                    EntityType.Builder.of(CubeEntity::new, MobCategory.MISC)
-                            .sized(1.0f,1.0f)
-                            .build("aircraft:cube"));
+                    EntityType.Builder
+                            .of(CubeEntity::new, MobCategory.MISC)
+                            .sized(1.0f, 1.0f)
+                            .build("aircraft:cube")
+            );
 }

@@ -9,16 +9,16 @@ import software.bernie.geckolib.model.GeoModel;
 public class CubeModel extends GeoModel<CubeEntity>{
     @Override
     public ResourceLocation getModelResource(CubeEntity animatable) {
-        return ResourceLocation.parse("airmod:geo/cube.geo.json");
+        return ResourceLocation.parse("aircraft:geo/cube.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(CubeEntity animatable) {
-        return ResourceLocation.parse("airmod:textures/entity/cubetex.png");
+        return ResourceLocation.parse("aircraft:textures/entity/cubetex.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(CubeEntity animatable) {
-        return ResourceLocation.parse("airmod:animations/cube.animation.json");
+        return ResourceLocation.parse("aircraft:animations/cube.animation.json");
     }
 }

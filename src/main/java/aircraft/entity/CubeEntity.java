@@ -1,8 +1,8 @@
 package aircraft.entity;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.level.Level;
 
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -10,17 +10,26 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class CubeEntity extends PathfinderMob implements GeoEntity{
+public class CubeEntity extends Entity implements GeoEntity {
 
     private final AnimatableInstanceCache cache =
             GeckoLibUtil.createInstanceCache(this);
 
-    public CubeEntity(EntityType<? extends PathfinderMob> type, Level level) {
+    public CubeEntity(EntityType<? extends CubeEntity> type, Level level) {
         super(type, level);
     }
 
+    // 1.21ではこれが必要
     @Override
-    protected void registerGoals(){
+    protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder builder) {
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
     }
 
     @Override
