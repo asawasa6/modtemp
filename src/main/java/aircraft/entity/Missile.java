@@ -2,7 +2,7 @@ package aircraft.entity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 
 import net.minecraft.world.phys.Vec3;
@@ -11,7 +11,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Missile extends Projectile implements GeoEntity {
+public class Missile extends Entity implements GeoEntity {
 
     private final AnimatableInstanceCache cache =
             GeckoLibUtil.createInstanceCache(this);
@@ -44,41 +44,29 @@ public class Missile extends Projectile implements GeoEntity {
     }
 
     @Override
-    public void onAddedToLevel() {
-        super.onAddedToLevel();
-        this.setDeltaMovement(0,0.1,0);
-    }
-    @Override
     public void tick() {
         super.tick();
 
-        if(!this.level().isClientSide) {
+        if (!this.level().isClientSide) {
 
             double acceleration = 0.02;
             double maxSpeed = 0.6;
 
-            double radius = 2.5;
-
             Vec3 motion = this.getDeltaMovement();
-
-
             double newY = motion.y + acceleration;
 
-            if(newY > maxSpeed) {
+            if (newY > maxSpeed) {
                 newY = maxSpeed;
             }
 
-            this.setDeltaMovement(motion.x,newY,motion.z);
+            this.setDeltaMovement(motion.x, newY, motion.z);
 
-
-            var enemies = this.level().getEntitiesOfClass(
-                    aircraft.entity.Enemy.class,
-                    this.getBoundingBox().inflate(radius)
+            // 直接座標更新（これが重要）
+            this.setPos(
+                    this.getX(),
+                    this.getY() + newY,
+                    this.getZ()
             );
-
-            if(!enemies.isEmpty()) {
-                explode();
-            }
         }
     }
 
