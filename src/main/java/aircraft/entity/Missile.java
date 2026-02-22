@@ -61,12 +61,19 @@ public class Missile extends Entity implements GeoEntity {
 
             this.setDeltaMovement(motion.x, newY, motion.z);
 
-            // 直接座標更新（これが重要）
-            this.setPos(
-                    this.getX(),
-                    this.getY() + newY,
-                    this.getZ()
-            );
+            // ここを変更
+            this.move(net.minecraft.world.entity.MoverType.SELF, this.getDeltaMovement());
+        }
+
+        double radius = 2.5;
+
+        var enemies = this.level().getEntitiesOfClass(
+                Enemy.class,
+                this.getBoundingBox().inflate(radius)
+        );
+
+        if (!enemies.isEmpty()) {
+            explode();
         }
     }
 
