@@ -1,8 +1,9 @@
 package aircraft.registry;
 
 import aircraft.entity.CubeEntity;
-
 import aircraft.entity.Missile;
+import aircraft.entity.Enemy;
+
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -28,5 +29,13 @@ public class ModEntities {
                             .of(Missile::new,MobCategory.MISC)
                             .sized(0.5f,6.23f)
                             .build("aircraft:missile")
+            );
+
+    public static final DeferredHolder<EntityType<?>,EntityType<Enemy>> ENEMY =
+            ENTITIES.register("enemy", () ->
+                    EntityType.Builder
+                            .of(Enemy::new,MobCategory.MISC)
+                            .sized(1.0f,1.0f)
+                            .build("aircraft:enemy")
             );
 }

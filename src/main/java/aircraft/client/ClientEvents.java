@@ -2,6 +2,7 @@ package aircraft.client;
 
 import aircraft.client.renderer.CubeRenderer;
 import aircraft.client.renderer.MissileRenderer;
+import aircraft.client.renderer.EnemyRenderer;
 import aircraft.registry.ModEntities;
 
 import net.neoforged.bus.api.IEventBus;
@@ -17,6 +18,10 @@ public class ClientEvents {
             event.registerEntityRenderer(
                     ModEntities.MISSILE.get(),
                     MissileRenderer::new
+            );
+            event.registerEntityRenderer(
+                    ModEntities.ENEMY.get(),
+                    EnemyRenderer::new
             );
         });
     }
